@@ -1,0 +1,8 @@
+GDP, Investment & Consumption: https://jp.pr.gov/apendice-estadistico-del-informe-economico-a-la-gobernador/
+Consumer Price Index, base 100=2006 (2011 - 2022) : https://estadisticas.pr/en/inventario-de-estadisticas/indice_de_precios_al_consumidor
+Consumer Price Index, base 100=2006 (1941-1984): https://www.indicadores.pr/dataset/ndice-de-precios-al-consumidor-historico
+Weekly Average Hours Worked (2013-2021): https://fred.stlouisfed.org/series/SMU72000000500000002
+Weekly Average Hours Worked (1990-2012): Privately shared by Juan L González Figueroa, Economista Director I, División Grupo Trabajador y Estudios Especiales (jugonzalez@trabajo.pr.gov ) from Departamento de Trabajo y Recursos Humanos . 
+
+US Quarterly Average Hours Worked: https://www.bls.gov/productivity/tables/
+
