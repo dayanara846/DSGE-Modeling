@@ -1,0 +1,19 @@
+	(1)	(2)	(3)	(4)
+VARIABLES	/structural	/	/structural	/
+				
+beta	0.990		0.990	
+	(0)		(0)	
+delta	0.100		0.100	
+	(0)		(0)	
+alpha	0.330		0.330	
+	(0)		(0)	
+gamma	4.370		4.370	
+	(0)		(0)	
+rho_a	0.0835		0.0835	
+	(0.147)		(0.147)	
+sd(e.a)		1.011***		1.011***
+		(0.106)		(0.106)
+				
+Observations	46	46	46	46
+Standard errors in parentheses				
+*** p<0.01, ** p<0.05, * p<0.1				

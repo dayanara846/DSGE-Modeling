@@ -1,0 +1,19 @@
+	(1)	(2)
+VARIABLES	control	control
+		
+beta	0.990	
+	(0)	
+delta	0.100	
+	(0)	
+alpha	0.330	
+	(0)	
+gamma	3.800	
+	(0)	
+rho_a	0.0830	
+	(0.147)	
+sd(e.a)		1.034***
+		(0.108)
+		
+Observations	46	46
+Standard errors in parentheses		
+*** p<0.01, ** p<0.05, * p<0.1		

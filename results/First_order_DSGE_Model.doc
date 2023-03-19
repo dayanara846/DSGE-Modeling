@@ -1,0 +1,27 @@
+{\rtf1\fs24
+\trowd\trgaph75\trleft-75\intbl\trqc\clbrdrt\brdrs\cellx1872\clbrdrt\brdrs\cellx3024\clbrdrt\brdrs\cellx4320
+\ql \cell\qc (1)\cell\qc (2)\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx3024\cellx4320
+\trowd\trgaph75\trleft-75\trqc\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx3024\clbrdrb\brdrs\cellx4320
+\ql VARIABLES\cell\qc control\cell\qc control\cell\row
+\trowd\trgaph75\trleft-75\trqc\cellx1872\cellx3024\cellx4320
+\ql \cell\qc \cell\qc \cell\row
+\ql beta\cell\qc 0.990\cell\qc \cell\row
+\ql \cell\qc (0)\cell\qc \cell\row
+\ql delta\cell\qc 0.100\cell\qc \cell\row
+\ql \cell\qc (0)\cell\qc \cell\row
+\ql alpha\cell\qc 0.330\cell\qc \cell\row
+\ql \cell\qc (0)\cell\qc \cell\row
+\ql gamma\cell\qc 3.800\cell\qc \cell\row
+\ql \cell\qc (0)\cell\qc \cell\row
+\ql rho_a\cell\qc 0.0830\cell\qc \cell\row
+\ql \cell\qc (0.147)\cell\qc \cell\row
+\ql sd(e.a)\cell\qc \cell\qc 1.034***\cell\row
+\ql \cell\qc \cell\qc (0.108)\cell\row
+\ql \cell\qc \cell\qc \cell\row
+\trowd\trgaph75\trleft-75\trqc\trbrdrb\brdrs\clbrdrb\brdrs\cellx1872\clbrdrb\brdrs\cellx3024\clbrdrb\brdrs\cellx4320
+\ql Observations\cell\qc 46\cell\qc 46\cell\row
+\pard\qc
+Standard errors in parentheses\par
+*** p<0.01, ** p<0.05, * p<0.1\par
+}
