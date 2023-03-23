@@ -29,8 +29,8 @@ cd "C:\Users\scyth\OneDrive - Northeastern University\Macro-7720\My_Project\Resu
 tsset Time
 * HP Filter \w lamnbda=6.25 (smoothing parameter for annual data according to https://www.econstor.eu/bitstream/10419/75742/1/cesifo_wp479.pdf)
 generate ln_GDP = 100*ln(GDP)
-*----- hp(ln(GDP)) = Y
-tsfilter hp hp_ln_GDP = ln_GDP, smooth(6.25) trend(trend)
+
+tsfilter hp hp_ln_GDP = ln_GDP, smooth(6.25) trend(trend) //hp(ln(GDP)) = Y
 
 generate ln_Consumption = 100*ln(Consumption)
 tsfilter hp hp_ln_C = ln_Consumption, smooth(6.25) 
@@ -65,25 +65,26 @@ tsline hp_ln_GDP hp_ln_C hp_ln_I hp_ln_H, yline(0) ytitle("Difference from trend
 
 
 
-** -------- Model
+** ----------- Model
 
-constraint 1 _b[beta]=0.99	        // Utility Discount Factor or Intertemporal Consumption
-constraint 2 _b[alpha]=0.33		    // Capital Share 
-constraint 3 _b[delta]=0.10	        // Depreciation Rate of Capital
-constraint 4 _b[gamma]=3.8	        // Elasticity Share of Leisure
+constraint 1 _b[beta]=0.99	        // <--- Utility Discount Factor or Intertemporal Consumption
+constraint 2 _b[alpha]=0.33		    // <---- Capital Share 
+constraint 3 _b[delta]=0.10	        // <---- Depreciation Rate of Capital
+constraint 4 _b[gamma]=3.8	        // <---- Elasticity Share of Leisure
 
-dsgenl  ( (F.hp_ln_C/hp_ln_C) = ({beta}*(1+F.r-{delta})) ) 	    /// Euler Equation (13)
-        ( hp_ln_GDP = k^({alpha})*(a*hp_ln_H)^(1-{alpha}) ) 	/// Production Function (1)
-        ( r = {alpha}*hp_ln_GDP/k ) 							/// Interest (16)
-        ( hp_ln_H =  (w-{gamma}*hp_ln_C)/w) 				    /// Labor Supply (12)
-        ( w = (1-{alpha})*hp_ln_GDP/hp_ln_H) 				    /// Wages (20)
-        ( F.k = (1-{delta})*k+hp_ln_I ) 						/// Law of Motion of Capital (15)
-        ( ln(F.a) = {rho_a}*ln(a) ) 					        /// Productivity Shock (21) 
-		(hp_ln_GDP =hp_ln_I+hp_ln_C) 							/// Aggregate equation (14) 
+dsgenl  ( (F.hp_ln_C/hp_ln_C) = ({beta}*(1+F.r-{delta})) ) 	    // <--  Euler Equation (13)
+        ( hp_ln_GDP = k^({alpha})*(a*hp_ln_H)^(1-{alpha}) ) 	// <---  Production Function (1)
+        ( r = {alpha}*hp_ln_GDP/k ) 							// <-- Interest (16)
+        ( hp_ln_H =  (w-{gamma}*hp_ln_C)/w) 				    // <-- Labor Supply (12)
+        ( w = (1-{alpha})*hp_ln_GDP/hp_ln_H) 				    // <--- Wages (20)
+        ( F.k = (1-{delta})*k+hp_ln_I ) 						// <---  Law of Motion of Capital (15)
+        ( ln(F.a) = {rho_a}*ln(a) ) 					        // <--- Productivity Shock (21) 
+		(hp_ln_GDP =hp_ln_I+hp_ln_C) 							// <--- Aggregate equation (14) 
         , constraint(1/4) observed(hp_ln_GDP) unobserved(hp_ln_C r hp_ln_H w hp_ln_I) endostate(k) exostate(a) noidencheck
 * export table
 outreg2 using First_order_DSGE_Model.doc, replace ctitle(control) 
 
+**--------- Results 
 	estat steady, compact	
 * export table
 * 	just copy paste into Word
@@ -102,34 +103,27 @@ outreg2 using First_order_DSGE_Model.doc, replace ctitle(control)
 outreg2 using Summary.doc
 
 
-     
 
-// Check on Model
+estat steady, compact // <---- Steady state
 
-// Eigenvalue stability
-*estat stable
-	  
-// Steady state
-estat steady, compact
 
-// Display estimated covariances of model variables
 
-estat covariance
-estat covariance, nocovariance
+estat covariance // <--- Display estimated covariances of model variables
+* estat covariance, nocovariance
 
-summarize hp_ln_C hp_ln_I hp_ln_H hp_ln_GDP
+summarize hp_ln_C hp_ln_I hp_ln_H hp_ln_GDP // <--- just to check that I wrote everything right
 
-// Impulse Response Functions
+**-------- Impulse Response Functions
 
 irf set solowirf
 irf create imp_res, replace step(48)
 irf graph irf, irf(imp_res) impulse(a) response(a hp_ln_GDP hp_ln_I k hp_ln_C hp_ln_H r w) yline(0) xlabel(0(4)48) byopts(yrescale) legend( nobox region(lstyle(none)) ) xtitle("Years") scheme(s1mono) 
 
 
-// Out of Sample Forecast
+**---------- Forecast for the next 16 years 
 
-* Set the time variable to quarterly
-tsset Time, quarterly
+
+tsset Time, quarterly // <---- Set the time variable to quarterly
 
 estimates store dsge_est
 tsappend, add(16)
@@ -140,7 +134,7 @@ label variable hp_ln_GDP "GDP Cycle"
 label variable d1_hp_ln_GDP "GDP Cycle Forecast"
 tsline d1_hp_ln_GDP hp_ln_GDP, tline(2464q4) yline(0)legend(col(1))  ytitle("% Change") xtitle("Years") xtitle("Years") ylabel(#5) ylabel(,labsize(small)) ytick(#5) graphregion(color(white)) title("U.S GDP Cycle") subtitle("Actual - Forecast") 
 
-// One Step Ahead Prediction
+**--------- Goodness of Fit (One Step Ahead Prediction)
 predict dep
 label variable dep "GDP - One Step Ahead Prediction"
 tsline hp_ln_GDP dep, legend(col(1)) legend(col(1))  ytitle("Deviation from Trend (%)") xtitle("Years") xtitle("Years") ylabel(#5) ylabel(,labsize(small)) ytick(#5) graphregion(color(white)) title("U.S GDP Cycle") subtitle("Actual - One Step Ahead Forecast") 
